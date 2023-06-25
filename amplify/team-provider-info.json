@@ -9,11 +9,16 @@
       "UnauthRoleName": "amplify-amplify5ab7eab9c0384-staging-162716-unauthRole",
       "StackName": "amplify-amplify5ab7eab9c0384-staging-162716",
       "StackId": "arn:aws:cloudformation:us-west-1:315997986850:stack/amplify-amplify5ab7eab9c0384-staging-162716/25f6b290-1375-11ee-9bc6-022f0fad5d39",
-      "AmplifyAppId": "dek8i91c5w92j"
+      "AmplifyAppId": "dek8i91c5w92j",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-amplify5ab7eab9c0384-staging-162716-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
         "pitfallplunder100a5a29": {}
+      },
+      "function": {
+        "pitfallplunder3a562718": {},
+        "pitfallplunderd63e2efa": {}
       }
     }
   }
