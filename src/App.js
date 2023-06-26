@@ -16,6 +16,7 @@ import { API } from 'aws-amplify';
 function App({ signOut }) {
   const [gameOutput, setGameOutput] = useState("");
   const [userInput, setUserInput] = useState("");
+  const [gameId, setGameId] = useState(null);
 
 
   async function startGame() {
@@ -25,16 +26,17 @@ function App({ signOut }) {
       headers: {}
     };
 
-    const response = await API.post(apiName, path, options);
-    console.log(response);
-    setGameOutput(response.data.message); // update the game's output with response
+  const response = await API.post(apiName, path, options);
+  console.log(response);
+  setGameOutput(response.data.message); // update the game's output with response
+  setGameId(response.data.gameId); // update the game's id with response
   }
 
   async function sendInput() {
-    const apiName = 'myAPIName'; // replace with your API name
+    const apiName = 'apibcb6604c';
     const path = '/game/{gameId}/input';
     const options = {
-      headers: {}, // any additional headers
+      headers: {},
       body: { input: userInput } // pass the user's input here
     };
 

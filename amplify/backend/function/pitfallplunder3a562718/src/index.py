@@ -13,5 +13,8 @@ def handler(event, context):
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'OPTIONS,POST,GET'
       },
-      'body': json.dumps('Hello from your new Amplify Python lambda!')
+      'body': json.dumps({
+        'message': 'Welcome to the game!',
+        'gameId': str(uuid.uuid4())  # generate a new UUID each time the function is called
+      })
   }
