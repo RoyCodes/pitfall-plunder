@@ -28,8 +28,8 @@ function App({ signOut }) {
 
   const response = await API.post(apiName, path, options);
   console.log(response);
-  setGameOutput(response.data.message); // update the game's output with response
-  setGameId(response.data.gameId); // update the game's id with response
+  setGameOutput(response.message); // update the game's output with response
+  setGameId(response.gameId); // update the game's id with response
   }
 
   async function sendInput() {
