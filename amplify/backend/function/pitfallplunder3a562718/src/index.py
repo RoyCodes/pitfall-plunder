@@ -1,5 +1,7 @@
 import json
 
+#Start Game
+
 def handler(event, context):
   print('received event:')
   print(event)
