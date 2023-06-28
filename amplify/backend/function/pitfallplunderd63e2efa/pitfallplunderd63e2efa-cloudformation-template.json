@@ -19,23 +19,13 @@
   },
   "Conditions": {
     "ShouldNotCreateEnvResources": {
-      "Fn::Equals": [
-        {
+      "Fn::Equals": [{
           "Ref": "env"
         },
         "NONE"
       ]
     }
   },
-  "Layers": [
-  { "Fn::Join": ["", [
-    "arn:aws:lambda:",
-    { "Ref": "AWS::Region" },
-    ":",
-    { "Ref": "AWS::AccountId" },
-    ":layer:pitfallplunderd63e2efa:1"
-  ]] }
-],
   "Resources": {
     "LambdaFunction": {
       "Type": "AWS::Lambda::Function",
@@ -44,6 +34,15 @@
         "aws:asset:property": "Code"
       },
       "Properties": {
+        "Layers": [{
+          "Fn::Join": ["", [
+            "arn:aws:lambda:",
+            { "Ref": "AWS::Region" },
+            ":",
+            { "Ref": "AWS::AccountId" },
+            ":layer:pitfallplunderd63e2efa:1"
+          ]]
+        }],
         "Code": {
           "S3Bucket": {
             "Ref": "deploymentBucketName"
@@ -115,19 +114,17 @@
         },
         "AssumeRolePolicyDocument": {
           "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Principal": {
-                "Service": [
-                  "lambda.amazonaws.com"
-                ]
-              },
-              "Action": [
-                "sts:AssumeRole"
+          "Statement": [{
+            "Effect": "Allow",
+            "Principal": {
+              "Service": [
+                "lambda.amazonaws.com"
               ]
-            }
-          ]
+            },
+            "Action": [
+              "sts:AssumeRole"
+            ]
+          }]
         }
       }
     },
@@ -138,39 +135,35 @@
       "Type": "AWS::IAM::Policy",
       "Properties": {
         "PolicyName": "lambda-execution-policy",
-        "Roles": [
-          {
-            "Ref": "LambdaExecutionRole"
-          }
-        ],
+        "Roles": [{
+          "Ref": "LambdaExecutionRole"
+        }],
         "PolicyDocument": {
           "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Action": [
-                "logs:CreateLogGroup",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-              ],
-              "Resource": {
-                "Fn::Sub": [
-                  "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
-                  {
-                    "region": {
-                      "Ref": "AWS::Region"
-                    },
-                    "account": {
-                      "Ref": "AWS::AccountId"
-                    },
-                    "lambda": {
-                      "Ref": "LambdaFunction"
-                    }
+          "Statement": [{
+            "Effect": "Allow",
+            "Action": [
+              "logs:CreateLogGroup",
+              "logs:CreateLogStream",
+              "logs:PutLogEvents"
+            ],
+            "Resource": {
+              "Fn::Sub": [
+                "arn:aws:logs:${region}:${account}:log-group:/aws/lambda/${lambda}:log-stream:*",
+                {
+                  "region": {
+                    "Ref": "AWS::Region"
+                  },
+                  "account": {
+                    "Ref": "AWS::AccountId"
+                  },
+                  "lambda": {
+                    "Ref": "LambdaFunction"
                   }
-                ]
-              }
+                }
+              ]
             }
-          ]
+          }]
         }
       }
     }
