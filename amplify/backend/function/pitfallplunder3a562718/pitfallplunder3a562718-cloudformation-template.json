@@ -36,7 +36,7 @@
       },
       "Properties": {
         "Layers": [
-          "arn:aws:lambda:us-west-1:315997986850:layer:OpenAI-AWS-Lambda-Layer:1"
+          "arn:aws:lambda:us-west-1:315997986850:layer:openai_layer:1"
           ],
         "Code": {
           "S3Bucket": {
