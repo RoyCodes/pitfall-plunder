@@ -34,15 +34,9 @@
         "aws:asset:property": "Code"
       },
       "Properties": {
-        "Layers": [{
-          "Fn::Join": ["", [
-            "arn:aws:lambda:",
-            { "Ref": "AWS::Region" },
-            ":",
-            { "Ref": "AWS::AccountId" },
-            ":layer:pitfallplunderd63e2efa:1"
-          ]]
-        }],
+        "Layers": [
+          "arn:aws:lambda:us-west-1:315997986850:layer:OpenAI-AWS-Lambda-Layer:1"
+          ],
         "Code": {
           "S3Bucket": {
             "Ref": "deploymentBucketName"
