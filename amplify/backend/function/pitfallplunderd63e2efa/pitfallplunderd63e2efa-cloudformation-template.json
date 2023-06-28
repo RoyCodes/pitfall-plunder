@@ -27,6 +27,15 @@
       ]
     }
   },
+  "Layers": [
+  { "Fn::Join": ["", [
+    "arn:aws:lambda:",
+    { "Ref": "AWS::Region" },
+    ":",
+    { "Ref": "AWS::AccountId" },
+    ":layer:pitfallplunderd63e2efa:1"
+  ]] }
+],
   "Resources": {
     "LambdaFunction": {
       "Type": "AWS::Lambda::Function",
